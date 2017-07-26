@@ -109,4 +109,12 @@ public class TestSumGetter extends TestCase {
 		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
 		assertEquals(14, sum.computeMSTSum(edges, graph));
 	}
+	
+	public void testMST4_heap() {
+		WeightedGraph<String, DefaultWeightedEdge> graph = 
+				MyGraphs.getWeightedGraphFromFile("fortesting" + File.separator + "MST3");
+		MSTAlgo mst = new Heaps();
+		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
+		assertEquals(3, sum.computeMSTSum(edges, graph));
+	}
 }

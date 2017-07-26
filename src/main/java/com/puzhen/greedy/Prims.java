@@ -2,11 +2,14 @@ package com.puzhen.greedy;
 
 import java.util.*;
 
+import org.apache.log4j.Logger;
 import org.jgrapht.WeightedGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
 public class Prims implements MSTAlgo{
 
+	final static Logger logger = Logger.getLogger(Prims.class);
+	
 	public Set<DefaultWeightedEdge> computeMST(WeightedGraph<String, DefaultWeightedEdge> graph) {
 		Set<DefaultWeightedEdge> t = new HashSet<DefaultWeightedEdge>();
 		Set<String> x = new HashSet<String>(); x.add("1");
@@ -33,6 +36,7 @@ public class Prims implements MSTAlgo{
 			}
 			t.add(cheapestEdge);
 			x.add(targetV);
+			logger.info(t);
 		}
 		return t;
 	}
