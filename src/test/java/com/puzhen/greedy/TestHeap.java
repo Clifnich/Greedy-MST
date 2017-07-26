@@ -7,6 +7,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.jgrapht.WeightedGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
+import com.puzhen.greedy.comparator.NodeComparator;
 import com.puzhen.greedy.utility.MyGraphs;
 
 import junit.framework.TestCase;
@@ -20,8 +21,8 @@ public class TestHeap extends TestCase{
 	public void test0() {
 		WeightedGraph<String, DefaultWeightedEdge> graph = 
 				MyGraphs.getWeightedGraphFromFile("fortesting" + File.separator + "tinygraph");
-		Heap heap = new Heap();
-		heap.add("1");
+		Heap heap = new Heap(new NodeComparator());
+		heap.add(new Node("1"));
 		DefaultWeightedEdge e = graph.getEdge("1", "2");
 		Pair<DefaultWeightedEdge, Double> pair = new ImmutablePair<DefaultWeightedEdge, Double>(e, graph.getEdgeWeight(e));
 		heap.setKey("1", pair);

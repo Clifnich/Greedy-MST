@@ -20,6 +20,7 @@ public class RunAllTests {
 		suite.addTestSuite(TestSumGetter.class);
 		suite.addTestSuite(TestMyGraphs.class);
 		suite.addTestSuite(TestNode.class);
+		suite.addTestSuite(TestHeap.class);
 		/* Add more tests here... */
 		
 		//$JUnit-END$

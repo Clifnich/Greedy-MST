@@ -2,6 +2,7 @@ package com.puzhen.greedy;
 
 import java.util.*;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.jgrapht.WeightedGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
@@ -15,14 +16,19 @@ public class Heaps implements MSTAlgo {
 		Set<String> vertexSet = graph.vertexSet();
 		Set<String> x = new HashSet<String>(); x.add(initV);
 		// init the heap
-		Queue<Node> heap = new PriorityQueue<Node>(new NodeComparator());
+		Heap heap = new Heap(new NodeComparator());
 		for (String v : vertexSet) {
 			if (!x.contains(v)) {
 				Node node = new Node(v);
 				DefaultWeightedEdge e = graph.getEdge(initV, v);
+				double weight = 99999;
+				if (e != null) {
+					weight = graph.getEdgeWeight(e);
+				}
 				node.setKey(e);
-				node.setEdgeLength(graph.getEdgeWeight(e));
+				node.setEdgeLength(weight);
 				heap.add(node);
+				heap.setKey(v, new ImmutablePair<DefaultWeightedEdge, Double>(e, weight));
 			}
 		}
 		
@@ -31,13 +37,20 @@ public class Heaps implements MSTAlgo {
 			t.add(node.getKey());
 			String v = node.getVertex();
 			x.add(v);
+			heap.remove(new Node(v));
 			for (String w : graph.vertexSet()) {
 				DefaultWeightedEdge e = graph.getEdge(v, w);
 				if (e == null) continue;
 				if (x.contains(w)) continue;
-				Node newNode = new Node(w);
-				heap.remove(newNode);
-				
+				double l_vw = graph.getEdgeWeight(e);
+				//double least = Math.min(heap.getKey(w).getRight(), l_vw);
+				if (heap.getKey(w).getRight() > l_vw) {
+					Node newNode = new Node(w);
+					heap.remove(newNode);
+					newNode.setKey(e);
+					newNode.setEdgeLength(l_vw);
+					heap.add(newNode);
+				}
 			}
 		}
 		// maintain invariant during while-loop

@@ -42,4 +42,12 @@ public class TestMSTAlgo extends TestCase {
 		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
 		assertEquals(3, edges.size());
 	}
+	
+	public void test3() {
+		WeightedGraph<String, DefaultWeightedEdge> graph = 
+				MyGraphs.getWeightedGraphFromFile("fortesting" + File.separator + "tinygraph");
+		MSTAlgo mst = new Heaps();
+		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
+		assertEquals(2, edges.size());
+	}
 }

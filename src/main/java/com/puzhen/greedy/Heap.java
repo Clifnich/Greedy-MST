@@ -5,7 +5,7 @@ import java.util.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jgrapht.graph.DefaultWeightedEdge;
 
-public class Heap extends PriorityQueue<String>{
+public class Heap extends PriorityQueue<Node>{
 
 	/**
 	 * 
@@ -17,7 +17,7 @@ public class Heap extends PriorityQueue<String>{
 		setUp();
 	}
 	
-	public Heap(Comparator<String> comparator) {
+	public Heap(Comparator<Node> comparator) {
 		super(comparator);
 		setUp();
 	}

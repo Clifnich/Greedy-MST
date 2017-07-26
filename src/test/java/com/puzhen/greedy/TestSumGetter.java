@@ -54,10 +54,26 @@ public class TestSumGetter extends TestCase {
 		assertEquals(3, sum.computeMSTSum(edges, graph));
 	}
 	
+	public void testMST_heap() {
+		WeightedGraph<String, DefaultWeightedEdge> graph = 
+				MyGraphs.getWeightedGraphFromFile("fortesting" + File.separator + "tinygraph");
+		MSTAlgo mst = new Heaps();
+		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
+		assertEquals(3, sum.computeMSTSum(edges, graph));
+	}
+	
 	public void testMST1() {
 		WeightedGraph<String, DefaultWeightedEdge> graph = 
 				MyGraphs.getWeightedGraphFromFile("fortesting" + File.separator + "tinygraph1");
 		MSTAlgo mst = new Prims();
+		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
+		assertEquals(6, sum.computeMSTSum(edges, graph));
+	}
+	
+	public void testMST1_heap() {
+		WeightedGraph<String, DefaultWeightedEdge> graph = 
+				MyGraphs.getWeightedGraphFromFile("fortesting" + File.separator + "tinygraph1");
+		MSTAlgo mst = new Heaps();
 		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
 		assertEquals(6, sum.computeMSTSum(edges, graph));
 	}
@@ -70,10 +86,26 @@ public class TestSumGetter extends TestCase {
 		assertEquals(7, sum.computeMSTSum(edges, graph));
 	}
 	
+	public void testMST2_heap() {
+		WeightedGraph<String, DefaultWeightedEdge> graph = 
+				MyGraphs.getWeightedGraphFromFile("fortesting" + File.separator + "MST7");
+		MSTAlgo mst = new Heaps();
+		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
+		assertEquals(7, sum.computeMSTSum(edges, graph));
+	}
+	
 	public void testMST3() {
 		WeightedGraph<String, DefaultWeightedEdge> graph = 
 				MyGraphs.getWeightedGraphFromFile("fortesting" + File.separator + "MST14");
 		MSTAlgo mst = new Prims();
+		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
+		assertEquals(14, sum.computeMSTSum(edges, graph));
+	}
+	
+	public void testMST3_heap() {
+		WeightedGraph<String, DefaultWeightedEdge> graph = 
+				MyGraphs.getWeightedGraphFromFile("fortesting" + File.separator + "MST14");
+		MSTAlgo mst = new Heaps();
 		Set<DefaultWeightedEdge> edges = mst.computeMST(graph);
 		assertEquals(14, sum.computeMSTSum(edges, graph));
 	}
